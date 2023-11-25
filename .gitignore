@@ -1,0 +1,11 @@
+# OS
+.DS_Store
+
+# gem packages
+vendor
+
+# IDE - VSCode
+.devcontainer
+
+# environment
+.env

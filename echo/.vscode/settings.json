@@ -1,0 +1,13 @@
+{
+    "[ruby]": {
+        "editor.defaultFormatter": "Shopify.ruby-lsp",
+        "editor.formatOnSave": true,
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true,
+        "editor.semanticHighlighting.enabled": true,
+        "editor.formatOnType": true
+    },
+    "rubyLsp.rubyVersionManager": "auto",
+    "rubyLsp.formatter": "auto",
+    "solargraph.useBundler": true,
+}
