@@ -39,18 +39,11 @@ event = {
     ]
   },
   "queryStringParameters" => {
-    "first_name" => "今夜今夜",
-    "id" => "1",
-    "last_name" => "山田",
-    "middle_name" => "ですよ"
+    "id" => "1"
   },
   "multiValueQueryStringParameters" => {
-    "first_name" => %w[world],
     "id" => [
-      "X2OA"
-    ],
-    "last_name" => [
-      "hello"
+      "1"
     ]
   },
   "pathParameters" => nil,
