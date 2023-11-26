@@ -1,0 +1,7 @@
+profile     = ""
+db_host     = ""
+db_port     = ""
+db_schema   = ""
+db_user     = ""
+zone_id     = ""
+domain_name = ""

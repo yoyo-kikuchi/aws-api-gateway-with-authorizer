@@ -6,3 +6,8 @@ vendor
 
 # environment
 .env
+
+# terrform
+terraform/.terraform
+terraform/state
+terraform.tfvars
