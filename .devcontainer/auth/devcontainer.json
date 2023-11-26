@@ -1,0 +1,29 @@
+{
+  "name": "auth",
+  "dockerComposeFile": [
+    "./docker-compose.yml"
+  ],
+  "service": "app",
+  "runServices": [
+    "app"
+  ],
+  "workspaceFolder": "/workspace/aws-api-gateway-ruby/auth",
+  "postCreateCommand": "ruby --version && bundle config set --local path vendor/bundle && bundle install",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "Shopify.ruby-lsp",
+        "Shopify.ruby-extensions-pack",
+        "sorbet.sorbet-vscode-extension",
+        "KoichiSasada.vscode-rdbg",
+        "castwide.solargraph",
+        "ionutvmi.path-autocomplete"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linu": "/bin/zsh"
+      }
+    }
+  },
+  "remoteUser": "vscode",
+  "shutdownAction": "stopCompose"
+}

@@ -1,0 +1,30 @@
+{
+  "name": "user_info",
+  "dockerComposeFile": [
+    "./docker-compose.yml"
+  ],
+  "service": "app",
+  "runServices": [
+    "app",
+    "postgress"
+  ],
+  "workspaceFolder": "/workspace/aws-api-gateway-ruby/user_info",
+  "postCreateCommand": "ruby --version && bundle config set --local path vendor/bundle && bundle install",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "Shopify.ruby-lsp",
+        "Shopify.ruby-extensions-pack",
+        "sorbet.sorbet-vscode-extension",
+        "KoichiSasada.vscode-rdbg",
+        "castwide.solargraph",
+        "ionutvmi.path-autocomplete"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linu": "/bin/zsh"
+      }
+    }
+  },
+  "remoteUser": "vscode",
+  "shutdownAction": "stopCompose"
+}

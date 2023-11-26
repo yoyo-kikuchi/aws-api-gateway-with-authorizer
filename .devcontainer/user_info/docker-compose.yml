@@ -1,0 +1,43 @@
+version: "3.4"
+
+services:
+  app:
+    build:
+      context: ../
+      dockerfile: Dockerfile
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    image: aws-api-gateway-ruby/user-info
+    container_name: api-gateway-user-info
+    tty: true
+    working_dir: /workspace/
+    env_file:
+      - .env
+    volumes:
+      - type: bind
+        source: $PWD
+        target: /workspace/aws-api-gateway-ruby
+
+  postgress:
+    image: postgres:12.17
+    container_name: api-gateway-postgres
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+    volumes:
+      - type: volume
+        source: api-gateway-postgres
+        target: /var/lib/postgresql/data
+      - type: bind
+        source: ./postgres/init
+        target: /docker-entrypoint-initdb.d
+    ports:
+      - 5432:5432
+
+volumes:
+  api-gateway-postgres:
+
+networks:
+  default:
+    name: api-gateway
