@@ -76,7 +76,7 @@ resource "aws_lambda_function" "this" {
   description   = var.description
   filename      = var.filename
   role          = aws_iam_role.this.arn
-  handler       = "lambda_function.lambda_handler"
+  handler       = var.hadler
   runtime       = "ruby3.2"
   architectures = [
     var.architecture

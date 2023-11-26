@@ -18,6 +18,10 @@ variable "request_validator_id" {
   type = string
 }
 
+variable "authorizer_id" {
+  type = string
+}
+
 variable "methods" {
   type = list(object({
     lambda_function_name       = string

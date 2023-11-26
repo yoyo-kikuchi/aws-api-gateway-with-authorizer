@@ -38,7 +38,8 @@ variable "resources" {
 }
 
 variable "allow_ips" {
-  type = list(string)
+  type    = list(string)
+  default = []
 }
 
 variable "redeployment" {
@@ -85,4 +86,9 @@ variable "logging_settings" {
     logging_level   = "INFO"
     metrics_enabled = true
   }
+}
+
+variable "create_rest_api_policy" {
+  type    = bool
+  default = false
 }

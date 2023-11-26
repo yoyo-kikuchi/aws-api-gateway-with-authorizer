@@ -5,3 +5,6 @@ run:
 
 gen_token:
 	bundle exec ruby gen_jwt.rb
+
+deploy:
+	bash scripts/lambda_deploy.sh sample-rest-api-gateway-authorizer

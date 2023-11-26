@@ -41,3 +41,7 @@ variable "architecture" {
   default     = "x86_64"
   description = "can use x86_64 or arm64"
 }
+
+variable "hadler" {
+  type = string
+}

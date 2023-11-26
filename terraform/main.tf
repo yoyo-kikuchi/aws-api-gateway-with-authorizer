@@ -7,6 +7,7 @@ module "lambda_function_user_info" {
   name        = "user-info-api"
   description = "ユーザー情報取得API"
   filename    = "app/lambda_function.zip"
+  hadler      = "src/main.lambda_handler"
   enabled_vpc = false
 
   environment_variables = {
@@ -23,7 +24,12 @@ module "lambda_function_authorizer" {
   name        = local.authorizer_lambda_function_name
   description = "gateway authorizer"
   filename    = "app/lambda_function.zip"
+  hadler      = "src/main.lambda_handler"
   enabled_vpc = false
+
+  environment_variables = {
+    JWT_SECRET = var.jwt_secret
+  }
 }
 
 module "api_gateway" {
@@ -31,14 +37,15 @@ module "api_gateway" {
   name                            = "sample-rest-api-gateway"
   authorizer_function_invoke_arn  = module.lambda_function_authorizer.function_invoke_arn
   authorizer_lambda_function_name = local.authorizer_lambda_function_name
-  authorizer_name                 = "authorizer01"
-  stage_name                      = "v1"
+
+  authorizer_name = "authorizer01"
+  stage_name      = "v1"
   resources = {
     "user" = {
       methods = [
         {
           http_method                = "GET"
-          authorization              = "NONE"
+          authorization              = "CUSTOM"
           api_key_required           = true
           lambda_function_name       = module.lambda_function_user_info.function_name
           lambda_function_invoke_arn = module.lambda_function_user_info.function_invoke_arn
@@ -49,10 +56,6 @@ module "api_gateway" {
       ]
     }
   }
-
-  allow_ips = [
-    "0.0.0.0/32"
-  ]
 
   api_keys = [
     {

@@ -31,3 +31,7 @@ variable "domain_name" {
   type        = string
   description = "FQDN"
 }
+
+variable "jwt_secret" {
+  type = string
+}

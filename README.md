@@ -5,6 +5,7 @@ Api Gateway lambda function and lambda Authorizer sample
 ## Requirement
 
 - Ruby: >=3.3.2
+- terraform: >= 1.6.4
 
 ## Usage
 

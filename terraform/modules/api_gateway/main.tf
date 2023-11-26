@@ -30,10 +30,10 @@ resource "aws_api_gateway_request_validator" "this" {
 # authorizerの設定
 ##############################################
 resource "aws_api_gateway_authorizer" "this" {
-  name                   = var.authorizer_name
-  rest_api_id            = aws_api_gateway_rest_api.this.id
-  authorizer_uri         = var.authorizer_function_invoke_arn
-  depends_on = [ 
+  name           = var.authorizer_name
+  rest_api_id    = aws_api_gateway_rest_api.this.id
+  authorizer_uri = var.authorizer_function_invoke_arn
+  depends_on = [
     aws_api_gateway_rest_api.this
   ]
 }
@@ -72,6 +72,7 @@ module "api_integration" {
   path_part            = aws_api_gateway_resource.this[each.key].path_part
   methods              = each.value.methods
   request_validator_id = aws_api_gateway_request_validator.this.id
+  authorizer_id        = aws_api_gateway_authorizer.this.id
 
   depends_on = [
     aws_api_gateway_resource.this
@@ -116,6 +117,8 @@ data "aws_iam_policy_document" "this" {
 }
 
 resource "aws_api_gateway_rest_api_policy" "this" {
+  count = var.create_rest_api_policy ? 1 : 0
+
   rest_api_id = aws_api_gateway_rest_api.this.id
   policy      = data.aws_iam_policy_document.this.json
 
